@@ -2,7 +2,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, add some environment variable
+`DATABASE_URL=<database-string-connection>`
+`DIRECT_URL=<database-direct-connection>`
+`JWT_SECRET_KEY=<random-string>`
+
+Second, run the development server:
 
 ```bash
 npm run dev
