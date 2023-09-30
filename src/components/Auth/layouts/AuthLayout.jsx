@@ -1,7 +1,6 @@
 "use client"
 
 import { Card, CardBody } from "@nextui-org/react";
-import { Toaster } from "react-hot-toast";
 
 
 export const AuthLayout = ({children}) => {
@@ -18,9 +17,6 @@ export const AuthLayout = ({children}) => {
                     </div>
                 </CardBody>
             </Card>
-            <Toaster
-                position="top-center"
-            />
         </main>
     )
 }

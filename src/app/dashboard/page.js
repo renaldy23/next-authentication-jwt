@@ -1,3 +1,5 @@
+import { Dashboard } from '@/components/Dashboard/components/Dashboard'
+
 export default function Page() {
-  return <p>Protected Page!</p>
+  return <Dashboard />
 }
