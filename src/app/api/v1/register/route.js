@@ -9,17 +9,26 @@ export async function POST(request) {
   // Hash password
   const hashedPassword = await bcrypt.hash(body.password, 10)
 
-  const user = await prisma.user.create({
-    data: {
-      name: body.name,
-      email: body.email,
-      username: body.username,
-      password: hashedPassword,
-    },
-  })
+  try {
+    const user = await prisma.user.create({
+      data: {
+        name: body.name,
+        email: body.email,
+        username: body.username,
+        password: hashedPassword,
+      },
+    })
 
-  return NextResponse.json({
-    message:
-      'Register new users successfully. Please login using the created account',
-  })
+    return NextResponse.json({
+      message:
+        'Register new users successfully. Please login using the created account',
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: 'Username or email is already exists',
+      },
+      { status: 400 },
+    )
+  }
 }
