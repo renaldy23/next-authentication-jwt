@@ -1,18 +1,19 @@
 'use client'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+
 import toast from 'react-hot-toast'
 
-export const useRegister = () => {
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+
+export const useLogin = () => {
   const payloadInitial = {
-    name: '',
     username: '',
-    email: '',
     password: '',
   }
   const router = useRouter()
 
   const [payload, setPayload] = useState(payloadInitial)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -20,25 +21,29 @@ export const useRegister = () => {
   }
 
   const submitData = async () => {
-    toast.loading('Registering....')
-    const req = await fetch('api/v1/register', {
+    toast.loading('Logged in you....')
+    setIsLoading(true)
+    const req = await fetch('api/v1/login', {
       method: 'POST',
       body: JSON.stringify(payload),
       cache: 'no-cache',
     })
+
     const result = await req.json()
     toast.remove()
 
     if (req.status != 200) {
       toast.error(result.message)
+      setIsLoading(false)
       return
     }
 
     toast.success(result.message)
+    setIsLoading(false)
     setTimeout(() => {
-      router.replace('/login')
+      router.replace('/dashboard')
     }, 1000)
   }
 
-  return { handleChange, submitData }
+  return { isLoading, handleChange, submitData }
 }

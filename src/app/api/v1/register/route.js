@@ -26,7 +26,8 @@ export async function POST(request) {
   } catch (error) {
     return NextResponse.json(
       {
-        message: 'Username or email is already exists',
+        message:
+          'Invalid request, please make sure you inserted a correct data!',
       },
       { status: 400 },
     )

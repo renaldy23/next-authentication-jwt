@@ -6,7 +6,7 @@ import { useRegister } from "../../hooks/useRegister";
 
 export const AuthRegister = () => {
 
-    const {payload,handleChange} = useRegister()
+    const {handleChange, submitData} = useRegister()
 
     return (
         <>
@@ -18,19 +18,19 @@ export const AuthRegister = () => {
                 </div>
                 <div className="space-y-2">
                     <label className="text-md">Email</label>
-                    <Input type="email" name="email"/>
+                    <Input type="email" name="email" onChange={handleChange} />
                 </div>
                 <div className="space-y-2">
                     <label className="text-md">Username</label>
-                    <Input type="text" name="username"/>
+                    <Input type="text" name="username" onChange={handleChange} />
                 </div>
                 <div className="space-y-2">
                     <label className="text-md">Password</label>
-                    <Input type="password" name="password"/>
+                    <Input type="password" name="password" onChange={handleChange} />
                 </div>
             </div>
-            <Button color="primary" className="w-full mt-6">
-                Button
+            <Button onClick={submitData} color="primary" className="w-full mt-6">
+                Sign Up
             </Button>
         </>
     )

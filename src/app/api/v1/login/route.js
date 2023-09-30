@@ -52,9 +52,12 @@ export async function POST(request) {
     email: user.email,
   }
 
-  return NextResponse.json({
+  const response = NextResponse.json({
     message: 'Successfully login!',
     access_token: accessToken,
     user: payload,
   })
+  response.cookies.set('x-token', accessToken)
+
+  return response
 }
